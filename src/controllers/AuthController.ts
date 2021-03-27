@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 
-import signUpUseCase from "../useCases/signUpUseCase"
-import signInUseCase from "../useCases/signInUseCase"
+import signUpUseCase from "../useCases/auth/signUpUseCase"
+import signInUseCase from "../useCases/auth/signInUseCase"
 
 class AuthController {
   async signin(req: Request, res: Response) {

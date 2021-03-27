@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs"
 
-import User from "../models/User"
-import generateToken from "../lib/auth/generateToken"
+import User from "../../models/User"
+import generateToken from "../../lib/auth/generateToken"
 
 interface SignInParams {
   email: string 
