@@ -1,6 +1,6 @@
 import { SignOptions } from "jsonwebtoken"
 
-export const PORT = process.env.PORT || 4000
+export const PORT = process.env.PORT || 7000
 //IRclbbwlmfPjNjIU
 export const DB_URI = process.env.DB_URI as string
 
