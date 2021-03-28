@@ -9,7 +9,7 @@ export class QuizQuestion {
   topic: Ref<Topic>
 
   @prop({ type: () => String })
-  option: String[]
+  options: String[]
 
   @prop()
   correctOption: string 
