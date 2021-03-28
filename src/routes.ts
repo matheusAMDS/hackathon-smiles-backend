@@ -21,7 +21,8 @@ routes.post("/auth/signin", AuthController.signin)
 
 routes.get("/me", authenticate, UserController.show)
 
-routes.get("/post", PostController.index)
+routes.get("/post", authenticate, PostController.index)
+routes.get("/post/:id", authenticate, PostController.show)
 routes.post(
   "/post", 
   authenticate, 
