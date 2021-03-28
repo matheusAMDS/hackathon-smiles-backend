@@ -18,7 +18,7 @@ class AuthController {
 
   async signup(req: Request, res: Response) {
     const { name, email, password, location } = req.body
-    const avatar = req.file.path
+    const avatar = req.file && req.file.path
 
     try {
       const user = await signUpUseCase({ 

@@ -4,11 +4,15 @@ import retrieveQuizMilesUseCase from "../useCases/quiz/retriveQuizMilesUseCase"
 
 class QuizResultController {
   async create(req: Request, res: Response) {
-    const { code } = req.body
+    const { code, responses } = req.body
     const userId = req.userId
 
     try {
-      const result = await retrieveQuizMilesUseCase({ code, userId })
+      const result = await retrieveQuizMilesUseCase({ 
+        code, 
+        userId, 
+        responses 
+      })
 
       return res.json({ result })
     } catch (error) {
