@@ -18,3 +18,6 @@ export const CLOUDINARY_CONFIG = {
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET
 } as ConfigOptions
+
+//quiz
+export const QUIZ_CODE_KEY = process.env.QUIZ_CODE_KEY

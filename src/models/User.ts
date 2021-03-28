@@ -1,4 +1,6 @@
-import { getModelForClass, prop } from "@typegoose/typegoose"
+import { getModelForClass, prop, Ref } from "@typegoose/typegoose"
+
+import { Mile } from "./Mile"
 
 export enum Role {
   ADMIN = "ADMIN",
@@ -19,8 +21,14 @@ export class User {
   @prop()
   location: String
 
+  @prop({ required: false })
+  avatar?: string
+
   @prop({ enum: Role })
   role: Role
+
+  @prop({ autopopulate: true, ref: () => Mile })
+  miles: Ref<Mile>[]
 }
 
 export const UserModel = getModelForClass(User)

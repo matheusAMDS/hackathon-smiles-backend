@@ -7,10 +7,11 @@ interface SignUpParams {
   email: string 
   password: string
   location: string
+  avatar?: string
 }
 
 async function signUpUseCase(params: SignUpParams) {
-  const { name, email, password, location } = params
+  const { name, email, password, location, avatar } = params
   
   let user = await UserModel.findOne({ email })
 
@@ -22,6 +23,8 @@ async function signUpUseCase(params: SignUpParams) {
     email,
     location,
     role: Role.BASIC,
+    miles: [],
+    avatar,
     password: await bcrypt.hash(password, 12)
   })
 
