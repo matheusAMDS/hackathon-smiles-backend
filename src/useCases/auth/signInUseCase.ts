@@ -19,7 +19,7 @@ async function SignInUseCase(params: SignInParams) {
   if (!await bcrypt.compare(password, user.password))
     throw new Error("Wrong password")
 
-  const token = generateToken({ id: user._id })
+  const token = generateToken({ id: user._id, role: user.role })
 
   return {
     user,

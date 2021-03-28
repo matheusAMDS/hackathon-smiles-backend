@@ -2,8 +2,9 @@ import jwt from "jsonwebtoken"
 
 import { JWT_CONFIG, JWT_SECRET_KEY } from "../../config"
 
-interface Payload {
+export interface Payload {
   id: string
+  role: string
 }
 
 function generateToken(payload: Payload) {

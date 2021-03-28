@@ -7,6 +7,8 @@ import PostController from "./controllers/PostController"
 
 import multer from "./lib/upload"
 import authenticate from "./lib/auth/authenticate"
+import checkRole from "./lib/auth/checkRole"
+import { Role } from "./models/User"
 
 const routes = Router()
 
@@ -16,11 +18,17 @@ routes.post("/auth/signup", AuthController.signup)
 routes.post("/auth/signin", AuthController.signin)
 
 routes.get("/post", PostController.index)
-routes.post("/post", multer.single("thumbnail"), PostController.create)
+routes.post(
+  "/post", 
+  authenticate, 
+  checkRole(Role.CREATOR), 
+  multer.single("thumbnail"), 
+  PostController.create
+  )
 
-routes.get("/topic", TopicController.index)
+routes.get("/topic", authenticate, TopicController.index)
 
-routes.get("/quiz/:topic", QuizController.show)
-routes.post("/quiz", QuizController.create)
+routes.get("/quiz/:topic", authenticate, QuizController.show)
+routes.post("/quiz", authenticate, checkRole(Role.ADMIN), QuizController.create)
 
 export default routes

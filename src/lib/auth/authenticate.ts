@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express"
 import jwt from "jsonwebtoken"
 
 import { JWT_SECRET_KEY } from "../../config"
+import { Payload } from "./generateToken"
 
 async function authenticate(req: Request, res: Response, next: NextFunction) {
   const { authorization } = req.headers
@@ -20,9 +21,17 @@ async function authenticate(req: Request, res: Response, next: NextFunction) {
     })
   }
     
-  const decoded = jwt.verify(token, JWT_SECRET_KEY)
-  console.log(decoded)
-  next()
+  jwt.verify(token, JWT_SECRET_KEY, (err, decoded) => {
+    if (err)
+      return res.status(403).json({ error: err.message })
+      
+    const user = decoded as Payload
+    req.userId = user.id
+    req.role = user.role
+    next()
+  })
+  
+  
 }
 
 export default authenticate
