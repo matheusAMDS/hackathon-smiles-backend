@@ -1,6 +1,12 @@
 import { getModelForClass, prop } from "@typegoose/typegoose"
 
-class User {
+export enum Role {
+  ADMIN = "ADMIN",
+  CREATOR = "CREATOR",
+  BASIC = "BASIC"
+}
+
+export class User {
   @prop()
   name: string
 
@@ -9,6 +15,12 @@ class User {
 
   @prop()
   password: string
+
+  @prop()
+  location: String
+
+  @prop({ enum: Role })
+  role: Role
 }
 
-export default getModelForClass(User)
+export const UserModel = getModelForClass(User)

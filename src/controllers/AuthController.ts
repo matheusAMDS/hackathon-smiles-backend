@@ -17,10 +17,10 @@ class AuthController {
   }
 
   async signup(req: Request, res: Response) {
-    const { name, email, password } = req.body
+    const { name, email, password, location } = req.body
 
     try {
-      const user = await signUpUseCase({ name, email, password })
+      const user = await signUpUseCase({ name, email, password, location })
 
       return res.json({ user })
     } catch (error) {

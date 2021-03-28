@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs"
 
-import User from "../../models/User"
+import { UserModel } from "../../models/User"
 import generateToken from "../../lib/auth/generateToken"
 
 interface SignInParams {
@@ -11,7 +11,7 @@ interface SignInParams {
 async function SignInUseCase(params: SignInParams) {
   const { email, password } = params 
 
-  const user = await User.findOne({ email })
+  const user = await UserModel.findOne({ email })
 
   if (!user)
     throw new Error("E-mail not registered")
